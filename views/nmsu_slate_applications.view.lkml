@@ -6,37 +6,17 @@ view: nmsu_slate_applications {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}._fivetran_synced ;;
   }
-  dimension: admit {
-    type: number
-    sql: ${TABLE}.admit ;;
-  }
   dimension: admit_month {
     type: number
     sql: ${TABLE}.admit_month ;;
-  }
-  dimension: admit_year {
-    type: number
-    sql: ${TABLE}.admit_year ;;
   }
   dimension: app_filter {
     type: number
     sql: ${TABLE}.app_filter ;;
   }
-  dimension: app_start {
-    type: number
-    sql: ${TABLE}.app_start ;;
-  }
   dimension: app_start_month {
     type: number
     sql: ${TABLE}.app_start_month ;;
-  }
-  dimension: app_start_year {
-    type: number
-    sql: ${TABLE}.app_start_year ;;
-  }
-  dimension: app_submit {
-    type: number
-    sql: ${TABLE}.app_submit ;;
   }
   dimension: application_campus {
     type: string
@@ -125,10 +105,6 @@ view: nmsu_slate_applications {
     type: number
     sql: ${TABLE}.days_submit_admit ;;
   }
-  dimension: enroll {
-    type: number
-    sql: ${TABLE}.enroll ;;
-  }
   dimension: enroll_month {
     type: number
     sql: ${TABLE}.enroll_month ;;
@@ -136,10 +112,6 @@ view: nmsu_slate_applications {
   dimension: enroll_week {
     type: number
     sql: ${TABLE}.enroll_week ;;
-  }
-  dimension: enroll_year {
-    type: number
-    sql: ${TABLE}.enroll_year ;;
   }
   dimension_group: first_admit {
     type: time
@@ -274,20 +246,36 @@ view: nmsu_slate_applications {
     type: string
     sql: ${TABLE}.utm_source ;;
   }
-  dimension: ytd_admit {
-    type: number
+  measure: admit {
+    type: sum
+    sql: ${TABLE}.admit ;;
+  }
+  measure: app_start {
+    type: sum
+    sql: ${TABLE}.app_start ;;
+  }
+  measure: app_submit {
+    type: sum
+    sql: ${TABLE}.app_submit ;;
+  }
+  measure: enroll {
+    type: sum
+    sql: ${TABLE}.enroll ;;
+  }
+  measure: ytd_admit {
+    type: sum
     sql: ${TABLE}.ytd_admit ;;
   }
-  dimension: ytd_enroll {
-    type: number
+  measure: ytd_enroll {
+    type: sum
     sql: ${TABLE}.ytd_enroll ;;
   }
-  dimension: ytd_start {
-    type: number
+  measure: ytd_start {
+    type: sum
     sql: ${TABLE}.ytd_start ;;
   }
-  dimension: ytd_submit {
-    type: number
+  measure: ytd_submit {
+    type: sum
     sql: ${TABLE}.ytd_submit ;;
   }
   measure: count {
