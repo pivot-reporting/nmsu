@@ -12,7 +12,7 @@ view: nmsu_google_keywords {
   }
   dimension: keywords {
     type:  string
-    sql: ${TABLE}.pivot_keywords ;;
+    sql: ${TABLE}.keywords ;;
   }
   dimension: ad_network_type {
     type:  string
