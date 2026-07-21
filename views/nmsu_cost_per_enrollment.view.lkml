@@ -12,66 +12,66 @@ view: nmsu_cost_per_enrollment {
     datatype: date
     sql: ${TABLE}.Date ;;
   }
-  measure: inq_rate {
+  measure: conv_rate {
     type: number
     value_format_name: percent_1
-    sql: ${tot_conv} / NULLIF(${tot_clicks}, 0) ;;
+    sql: ${conversions} / NULLIF(${clicks}, 0) ;;
   }
   measure: cpe {
     type: number
     value_format_name: usd_0
-    sql: ${tot_spend} / NULLIF(${tot_enroll}, 0) ;;
+    sql: ${spend} / NULLIF(${enroll}, 0) ;;
   }
   measure: cpl {
     type: number
     value_format_name: usd_0
-    sql: ${tot_spend} / NULLIF(${tot_rfi}, 0) ;;
+    sql: ${spend} / NULLIF(${rfi}, 0) ;;
   }
   measure: cpsubmits {
     type: number
     value_format_name: usd_0
-    sql: ${tot_spend} / NULLIF(${tot_submits}, 0) ;;
+    sql: ${spend} / NULLIF(${submits}, 0) ;;
   }
   measure: ctr {
     type: number
     value_format_name: percent_2
-    sql: ${tot_clicks} / NULLIF(${tot_impressions}, 0) ;;
+    sql: ${clicks} / NULLIF(${impressions}, 0) ;;
   }
-  measure: tot_admits {
+  measure: admits {
     type: sum
     sql: ${TABLE}.tot_admits ;;
   }
-  measure: tot_clicks {
+  measure: clicks {
     type: sum
     sql: ${TABLE}.tot_clicks ;;
   }
-  measure: tot_conv {
+  measure: conversions {
     type: sum
     value_format_name: decimal_0
     sql: ${TABLE}.tot_conv ;;
   }
-  measure: tot_enroll {
+  measure: enroll {
     type: sum
     sql: ${TABLE}.tot_enroll ;;
   }
-  measure: tot_impressions {
+  measure: impressions {
     type: sum
     sql: ${TABLE}.tot_impressions ;;
   }
-  measure: tot_rfi {
+  measure: rfi {
     type: sum
     sql: ${TABLE}.tot_rfi ;;
   }
-  measure: tot_spend {
+  measure: spend {
     type: sum
     value_format_name: usd_0
     sql: ${TABLE}.tot_spend ;;
   }
-  measure: tot_starts {
+  measure: starts {
     type: sum
     sql: ${TABLE}.tot_starts ;;
   }
-  measure: tot_submits {
+  measure: submits {
     type: sum
     sql: ${TABLE}.tot_submits ;;
   }
