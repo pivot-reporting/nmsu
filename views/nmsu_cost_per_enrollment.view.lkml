@@ -12,6 +12,10 @@ view: nmsu_cost_per_enrollment {
     datatype: date
     sql: ${TABLE}.Date ;;
   }
+  dimension: health_portfolio_masters {
+    type: string
+    sql: case when ${campaign} in ('Public Health Masters','Clinical Psychopharmacology MS','Leadership & Administration MSN') then 'Health Portfolio Masters' end ;;
+  }
   measure: conv_rate {
     type: number
     value_format_name: percent_1
