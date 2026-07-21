@@ -269,18 +269,22 @@ view: nmsu_slate_applications {
   measure: ytd_admit {
     type: sum
     sql: ${TABLE}.ytd_admit ;;
+    label: "YTD Admit"
   }
   measure: ytd_enroll {
     type: sum
     sql: ${TABLE}.ytd_enroll ;;
+    label: "YTD Enrolled"
   }
   measure: ytd_start {
     type: sum
     sql: ${TABLE}.ytd_start ;;
+    label: "YTD App Starts"
   }
   measure: ytd_submit {
     type: sum
     sql: ${TABLE}.ytd_submit ;;
+    label: "YTD Apps"
   }
   measure: count {
     type: count
