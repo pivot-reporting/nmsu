@@ -8,7 +8,7 @@ view: nmsu_digital_metrics {
   }
   dimension: ad_group {
     type:  string
-    sql:  ${TABLE}.ad_group_name ;;
+    sql:  ${TABLE}.ad_group ;;
   }
   dimension: network {
     type:  string
