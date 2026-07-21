@@ -304,4 +304,19 @@ view: nmsu_slate_applications {
     value_format_name: percent_0
     sql: case when ${admit} != 0 then ${enroll}/${admit} else null end ;;
   }
+measure: ytd_submit_to_admit_rate {
+  type:  number
+  value_format_name: percent_0
+  sql: case when ${ytd_submit} != 0 then ${ytd_admit}/${ytd_submit} else null end ;;
+}
+measure: ytd_submit_to_enroll_rate {
+  type:  number
+  value_format_name: percent_0
+  sql: case when ${ytd_submit} != 0 then ${ytd_enroll}/${ytd_submit} else null end ;;
+}
+measure: ytd_admit_to_enroll_rate {
+  type:  number
+  value_format_name: percent_0
+  sql: case when ${ytd_admit} != 0 then ${ytd_enroll}/${ytd_admit} else null end ;;
+}
 }
