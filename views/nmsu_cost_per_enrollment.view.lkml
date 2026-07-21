@@ -16,26 +16,31 @@ view: nmsu_cost_per_enrollment {
     type: number
     value_format_name: percent_1
     sql: ${conversions} / NULLIF(${clicks}, 0) ;;
+    label: "Conv. Rate"
   }
   measure: cpe {
     type: number
     value_format_name: usd_0
     sql: ${spend} / NULLIF(${enroll}, 0) ;;
+    label: "CPE"
   }
   measure: cpi {
     type: number
     value_format_name: usd_0
     sql: ${spend} / NULLIF(${rfi}, 0) ;;
+    label: "CPI"
   }
   measure: cpsubmits {
     type: number
     value_format_name: usd_0
     sql: ${spend} / NULLIF(${submits}, 0) ;;
+    label: "CPSubmits"
   }
   measure: ctr {
     type: number
     value_format_name: percent_2
     sql: ${clicks} / NULLIF(${impressions}, 0) ;;
+    label: "CTR"
   }
   measure: admits {
     type: sum
