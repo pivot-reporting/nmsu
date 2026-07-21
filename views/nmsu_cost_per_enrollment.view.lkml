@@ -22,7 +22,7 @@ view: nmsu_cost_per_enrollment {
     value_format_name: usd_0
     sql: ${spend} / NULLIF(${enroll}, 0) ;;
   }
-  measure: cpl {
+  measure: cpi {
     type: number
     value_format_name: usd_0
     sql: ${spend} / NULLIF(${rfi}, 0) ;;
