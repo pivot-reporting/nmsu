@@ -285,4 +285,19 @@ view: nmsu_slate_applications {
   measure: count {
     type: count
   }
+  measure: submit_to_admit_rate {
+    type:  number
+    value_format_name: percent_0
+    sql: case when ${app_submit} != 0 then ${admit}/${app_submit} else null end ;;
+  }
+  measure: submit_to_enroll_rate {
+    type:  number
+    value_format_name: percent_0
+    sql: case when ${app_submit} != 0 then ${enroll}/${app_submit} else null end ;;
+  }
+  measure: admit_to_enroll_rate {
+    type:  number
+    value_format_name: percent_0
+    sql: case when ${admit} != 0 then ${enroll}/${admit} else null end ;;
+  }
 }
