@@ -16,3 +16,10 @@ include: "/views/**/*.view.lkml"
 
 
 explore: nmsu_slate_applications {}
+
+explore: nmsu_rfi_inquiries {
+  join: nmsu_slate_applications {
+    type: inner
+    sql_on: ${nmsu_rfi_inquiries.person_id} = ${nmsu_slate_applications.slate_id} ;;
+    relationship: many_to_many}
+}
