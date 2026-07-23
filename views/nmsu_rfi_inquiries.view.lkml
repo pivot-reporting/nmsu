@@ -172,19 +172,18 @@ view: nmsu_rfi_inquiries {
     END ;;
   }
 measure: inquiry_ytd_2025 {
-  type: count
-  filters: [
-    is_inquiry_ytd: "yes",
-    rev_entry_term: "%2025%"
-  ]
+  type: count_distinct
+  sql: ${person_id} ;;
+  filters: [is_inquiry_ytd: "yes"]
+  value_format_name: decimal_0
   label: "2025 Inquiries YTD"
 }
+
 measure: inquiry_ytd_2026 {
-  type: count
-  filters: [
-    is_inquiry_ytd: "yes",
-    rev_entry_term: "%2026%"
-  ]
+  type: count_distinct
+  sql: ${person_id} ;;
+  filters: [is_inquiry_ytd: "yes"]
+  value_format_name: decimal_0
   label: "2026 Inquiries YTD"
 }
 measure: inquiry_ytd_pct_change {
