@@ -158,75 +158,43 @@ view: nmsu_rfi_inquiries {
     sql: ${TABLE}.utm_platform ;;
   }
 # ============================================================
-# CYCLE PARAMETER
-# Reuse the existing current_cycle_year parameter if this view
-# shares an explore with the application model — don't redeclare it.
-# ============================================================
-  parameter: current_cycle_year {
-    type: number
-    default_value: "2026"
-    description: "Set this once per cycle. All YoY logic flows from here."
-  }
-
-# ============================================================
-# CYCLE DERIVATION (fiscal year of created_date)
-# ASSUMPTION: FY starts July 1, labeled by ending year.
-#   FY2026 = Jul 2025 - Jun 2026.
-# To change FY start month, edit the >= 7 below.
-# ============================================================
-  dimension: cycle_year {
-    type: number
-    sql:
-    EXTRACT(YEAR FROM CAST(${first_rfi_submission_date} AS DATE))
-    + CASE WHEN EXTRACT(MONTH FROM CAST(${first_rfi_submission_date} AS DATE)) >= 7 THEN 1 ELSE 0 END ;;
-  }
-  dimension: is_current_cycle {
-    type: yesno
-    sql: ${cycle_year} = {% parameter current_cycle_year %} ;;
-  }
-  dimension: is_prior_cycle {
-    type: yesno
-    sql: ${cycle_year} = {% parameter current_cycle_year %} - 1 ;;
-  }
-
-# ============================================================
-# INQUIRY YTD GATE
-#   - current cycle: any row
-#   - prior cycle: only rows created >365 days ago (trims to
-#     the equivalent year-to-date point)
+# INQUIRY YTD
 # ============================================================
   dimension: is_inquiry_ytd {
     type: yesno
     sql:
-    ${is_current_cycle}
-    OR (${is_prior_cycle}
-        AND DATE_DIFF(CURRENT_DATE(), CAST(${first_rfi_submission_date} AS DATE), DAY) > 365) ;;
-  }
-
-# ============================================================
-# INQUIRY MEASURES — distinct person_id
-# ============================================================
-  measure: inquiries_current_ytd {
-    label: "Inquiries (Current FY YTD)"
-    type: count_distinct
-    sql: ${person_id} ;;
-    filters: [is_inquiry_ytd: "yes", is_current_cycle: "yes"]
-  }
-  measure: inquiries_prior_ytd {
-    label: "Inquiries (Prior FY YTD)"
-    type: count_distinct
-    sql: ${person_id} ;;
-    filters: [is_inquiry_ytd: "yes", is_prior_cycle: "yes"]
-  }
-  measure: percent_inquiries_change {
-    label: "Inquiries % Change YoY"
-    type: number
-    value_format_name: percent_0
-    sql:
-    CASE WHEN ${inquiries_prior_ytd} != 0
-      THEN (${inquiries_current_ytd} - ${inquiries_prior_ytd}) / ${inquiries_prior_ytd}
-      ELSE NULL
+    CASE
+      WHEN ${rev_entry_term} LIKE '%2025%' THEN
+        DATE_DIFF(CURRENT_DATE(), CAST(${first_rfi_submission_date} AS DATE), DAY) > 365
+      WHEN ${rev_entry_term} LIKE '%2026%' THEN
+        TRUE
+      ELSE FALSE
     END ;;
+  }
+measure: inquiry_ytd_2025 {
+  type: count
+  filters: [
+    is_inquiry_ytd: "yes",
+    rev_entry_term: "%2025%"
+  ]
+  label: "2025 Inquiries YTD"
+}
+measure: inquiry_ytd_2026 {
+  type: count
+  filters: [
+    is_inquiry_ytd: "yes",
+    rev_entry_term: "%2026%"
+  ]
+  label: "2026 Inquiries YTD"
+}
+measure: inquiry_ytd_pct_change {
+  type: number
+  sql: SAFE_DIVIDE(
+    (${inquiry_ytd_2026} - ${inquiry_ytd_2025}),
+    NULLIF(${inquiry_ytd_2025}, 0)
+  ) ;;
+  value_format_name: percent_1
+  label: "Inquiry YTD % Change"
     html:
     <span style="color: {% if value > 0 %}#3B6D11{% elsif value < 0 %}#A32D2D{% else %}#888780{% endif %}">
     {% if value > 0 %}▲{% elsif value < 0 %}▼{% endif %}
