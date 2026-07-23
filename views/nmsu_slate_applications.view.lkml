@@ -246,6 +246,38 @@ view: nmsu_slate_applications {
     type: string
     sql: ${TABLE}.utm_source ;;
   }
+  dimension: app_start_fiscal_month_order {
+    type: number
+    sql:
+    CASE
+      WHEN ${app_start_month} = 7  THEN 1
+      WHEN ${app_start_month} = 8  THEN 2
+      WHEN ${app_start_month} = 9  THEN 3
+      WHEN ${app_start_month} = 10 THEN 4
+      WHEN ${app_start_month} = 11 THEN 5
+      WHEN ${app_start_month} = 12 THEN 6
+      WHEN ${app_start_month} = 1  THEN 7
+      WHEN ${app_start_month} = 2  THEN 8
+      WHEN ${app_start_month} = 3  THEN 9
+      WHEN ${app_start_month} = 4  THEN 10
+      WHEN ${app_start_month} = 5  THEN 11
+      WHEN ${app_start_month} = 6  THEN 12
+    END ;;
+    label: "App Start Fiscal Month Order"
+  }
+
+  dimension: app_start_fiscal_year {
+    type: string
+    sql:
+    CASE
+      WHEN ${application_created_date} >= DATE(2022, 7, 1) AND ${application_created_date} < DATE(2023, 7, 1) THEN 'FY23'
+      WHEN ${application_created_date} >= DATE(2023, 7, 1) AND ${application_created_date} < DATE(2024, 7, 1) THEN 'FY24'
+      WHEN ${application_created_date} >= DATE(2024, 7, 1) AND ${application_created_date} < DATE(2025, 7, 1) THEN 'FY25'
+      WHEN ${application_created_date} >= DATE(2025, 7, 1) AND ${application_created_date} < DATE(2026, 7, 1) THEN 'FY26'
+      WHEN ${application_created_date} >= DATE(2026, 7, 1) AND ${application_created_date} < DATE(2027, 7, 1) THEN 'FY27'
+    END ;;
+    label: "App Start Fiscal Year"
+  }
   measure: admit {
     type: sum
     sql: ${TABLE}.admit ;;
