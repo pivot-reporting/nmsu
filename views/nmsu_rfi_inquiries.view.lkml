@@ -157,6 +157,37 @@ view: nmsu_rfi_inquiries {
     type: string
     sql: ${TABLE}.utm_platform ;;
   }
+  dimension: fiscal_month_order {
+    type: number
+    sql:
+    CASE
+      WHEN ${rfi_month} = 7  THEN 1
+      WHEN ${rfi_month} = 8  THEN 2
+      WHEN ${rfi_month} = 9  THEN 3
+      WHEN ${rfi_month} = 10 THEN 4
+      WHEN ${rfi_month} = 11 THEN 5
+      WHEN ${rfi_month} = 12 THEN 6
+      WHEN ${rfi_month} = 1  THEN 7
+      WHEN ${rfi_month} = 2  THEN 8
+      WHEN ${rfi_month} = 3  THEN 9
+      WHEN ${rfi_month} = 4  THEN 10
+      WHEN ${rfi_month} = 5  THEN 11
+      WHEN ${rfi_month} = 6  THEN 12
+    END ;;
+    label: "Fiscal Month Order"
+  }
+  dimension: fiscal_year {
+    type: string
+    sql:
+    CASE
+      WHEN ${first_rfi_submission_date} >= DATE(2022, 7, 1) AND ${first_rfi_submission_date} < DATE(2023, 7, 1) THEN 'FY23'
+      WHEN ${first_rfi_submission_date} >= DATE(2023, 7, 1) AND ${first_rfi_submission_date} < DATE(2024, 7, 1) THEN 'FY24'
+      WHEN ${first_rfi_submission_date} >= DATE(2024, 7, 1) AND ${first_rfi_submission_date} < DATE(2025, 7, 1) THEN 'FY25'
+      WHEN ${first_rfi_submission_date} >= DATE(2025, 7, 1) AND ${first_rfi_submission_date} < DATE(2026, 7, 1) THEN 'FY26'
+      WHEN ${first_rfi_submission_date} >= DATE(2026, 7, 1) AND ${first_rfi_submission_date} < DATE(2027, 7, 1) THEN 'FY27'
+    END ;;
+    label: "Fiscal Year"
+  }
 # ============================================================
 # INQUIRY YTD
 # ============================================================
