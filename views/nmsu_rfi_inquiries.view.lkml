@@ -235,6 +235,8 @@ measure: inquiry_ytd_pct_change {
     type: count_distinct
     sql: ${person_id} ;;
     value_format_name: decimal_0
+    label: "Inquiries"
+
   }
   measure: count {
     type: count
