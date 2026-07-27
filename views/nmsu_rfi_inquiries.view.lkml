@@ -200,17 +200,6 @@ view: nmsu_rfi_inquiries {
 # ============================================================
 # INQUIRY YTD
 # ============================================================
-  dimension: is_inquiry_ytd {
-    type: yesno
-    sql:
-    CASE
-      WHEN ${rev_entry_term} LIKE '%2025%' THEN
-        DATE_DIFF(CURRENT_DATE(), CAST(${first_rfi_submission_date} AS DATE), DAY) > 365
-      WHEN ${rev_entry_term} LIKE '%2026%' THEN
-        TRUE
-      ELSE FALSE
-    END ;;
-  }
   dimension: ytd_cycle {
     type: string
     sql: CASE
