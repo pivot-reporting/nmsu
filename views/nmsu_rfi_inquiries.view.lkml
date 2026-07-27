@@ -197,6 +197,19 @@ view: nmsu_rfi_inquiries {
     type: number
     sql: CAST(REGEXP_EXTRACT(${rev_entry_term}, r'Term (\d)$') AS INT64) ;;
   }
+  dimension: utm_source {
+    type: string
+    sql: CASE
+         WHEN LOWER(${rev_first_utm_source}) LIKE '%google%' then 'Google'
+         WHEN LOWER(${rev_first_utm_source}) LIKE '%meta%' then 'Meta'
+         WHEN LOWER(${rev_first_utm_source}) LIKE '%linkedin%' then 'LinkedIn'
+         WHEN LOWER(${rev_first_utm_source}) LIKE '%tiktok%' then 'TikTok'
+         WHEN LOWER(${rev_first_utm_source}) LIKE '%bing%' then 'Bing'
+         WHEN LOWER(${rev_first_utm_source}) LIKE '%chatgpt%' then 'ChatGPT'
+         WHEN ${rev_first_utm_source} is null then 'Blank'
+         ELSE 'Other'
+        END;;
+  }
 # ============================================================
 # INQUIRY YTD
 # ============================================================
