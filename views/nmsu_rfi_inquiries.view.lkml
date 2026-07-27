@@ -220,20 +220,20 @@ view: nmsu_rfi_inquiries {
                   <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR) THEN 'prior'
        END ;;
   }
-measure: inquiry_ytd_2025 {
-  type: count_distinct
-  sql: ${person_id} ;;
-  filters: [is_inquiry_ytd: "yes"]
-  value_format_name: decimal_0
-  label: "2025 Inquiries YTD"
-}
-
 measure: inquiry_ytd_2026 {
   type: count_distinct
   sql: ${person_id} ;;
-  filters: [is_inquiry_ytd: "yes"]
+  filters: [ytd_cycle: "current"]
   value_format_name: decimal_0
   label: "2026 Inquiries YTD"
+}
+
+measure: inquiry_ytd_2025 {
+  type: count_distinct
+  sql: ${person_id} ;;
+  filters: [ytd_cycle: "prior"]
+  value_format_name: decimal_0
+  label: "2025 Inquiries YTD"
 }
 measure: inquiry_ytd_pct_change {
   type: number
