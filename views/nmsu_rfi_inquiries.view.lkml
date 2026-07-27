@@ -188,6 +188,15 @@ view: nmsu_rfi_inquiries {
     END ;;
     label: "Fiscal Year"
   }
+  dimension: term_season {
+    type: string
+    sql: REGEXP_EXTRACT(${rev_entry_term}, r'^(Spring|Summer|Fall)') ;;
+  }
+
+  dimension: term_part {
+    type: number
+    sql: CAST(REGEXP_EXTRACT(${rev_entry_term}, r'Term (\d)$') AS INT64) ;;
+  }
 # ============================================================
 # INQUIRY YTD
 # ============================================================
@@ -201,6 +210,15 @@ view: nmsu_rfi_inquiries {
         TRUE
       ELSE FALSE
     END ;;
+  }
+  dimension: ytd_cycle {
+    type: string
+    sql: CASE
+         WHEN ${rev_entry_term} LIKE '%2026%' THEN 'current'
+         WHEN ${rev_entry_term} LIKE '%2025%'
+              AND CAST(${first_rfi_submission_date} AS DATE)
+                  <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR) THEN 'prior'
+       END ;;
   }
 measure: inquiry_ytd_2025 {
   type: count_distinct
