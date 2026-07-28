@@ -23,3 +23,4 @@ explore: nmsu_rfi_inquiries {
     sql_on: ${nmsu_rfi_inquiries.person_id} = ${nmsu_slate_applications.slate_id} ;;
     relationship: many_to_many}
 }
+explore:  fall_time_analysis_days {}
