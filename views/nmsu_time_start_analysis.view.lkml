@@ -5,17 +5,9 @@ view: fall_time_analysis_days {
     type: string
     sql: ${TABLE}.application_degree_type ;;
   }
-  dimension: bucket_count {
-    type: number
-    sql: ${TABLE}.bucket_count ;;
-  }
   dimension: bucket_sort {
     type: number
     sql: ${TABLE}.bucket_sort ;;
-  }
-  dimension: cumulative_count {
-    type: number
-    sql: ${TABLE}.cumulative_count ;;
   }
   dimension: portfolio {
     type: string
@@ -36,6 +28,14 @@ view: fall_time_analysis_days {
   dimension: time_bucket {
     type: string
     sql: ${TABLE}.time_bucket ;;
+  }
+  measure: bucket_count {
+    type: sum
+    sql: ${TABLE}.bucket_count ;;
+  }
+  measure: cumulative_count {
+    type: sum
+    sql: ${TABLE}.cumulative_count ;;
   }
   measure: count {
     type: count
