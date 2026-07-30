@@ -24,3 +24,7 @@ explore: nmsu_rfi_inquiries {
     relationship: many_to_many}
 }
 explore:  fall_time_analysis_days {}
+
+explore:  nmsu_channel_breakdown {}
+
+explore:  nmsu_apps_digital_influence {}
