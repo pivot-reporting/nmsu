@@ -1,18 +1,6 @@
 view: nmsu_apps_digital_influence {
   sql_table_name: `tidy-groove-392522.nmsu_interactions_slate.nmsu_apps_digital_influence` ;;
 
-  dimension: admit {
-    type: number
-    sql: ${TABLE}.admit ;;
-  }
-  dimension: app_start {
-    type: number
-    sql: ${TABLE}.app_start ;;
-  }
-  dimension: app_submit {
-    type: number
-    sql: ${TABLE}.app_submit ;;
-  }
   dimension_group: application_created {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -26,98 +14,6 @@ view: nmsu_apps_digital_influence {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.application_submitted_date ;;
-  }
-  dimension: days_admit_to_enroll {
-    type: number
-    sql: ${TABLE}.days_admit_to_enroll ;;
-  }
-  dimension: days_start_to_submit {
-    type: number
-    sql: ${TABLE}.days_start_to_submit ;;
-  }
-  dimension: days_submit_to_admit {
-    type: number
-    sql: ${TABLE}.days_submit_to_admit ;;
-  }
-  dimension: enroll {
-    type: number
-    sql: ${TABLE}.enroll ;;
-  }
-  dimension_group: first_admit {
-    type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}.first_admit_date ;;
-  }
-  dimension_group: first_enroll {
-    type: time
-    timeframes: [raw, date, week, month, quarter, year]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.first_enroll_date ;;
-  }
-  dimension: google_interactions_pre_start {
-    type: number
-    sql: ${TABLE}.google_interactions_pre_start ;;
-  }
-  dimension: google_interactions_pre_submit {
-    type: number
-    sql: ${TABLE}.google_interactions_pre_submit ;;
-  }
-  dimension: influenced_pre_start {
-    type: number
-    sql: ${TABLE}.influenced_pre_start ;;
-  }
-  dimension: influenced_pre_submit {
-    type: number
-    sql: ${TABLE}.influenced_pre_submit ;;
-  }
-  dimension: linkedin_interactions_pre_start {
-    type: number
-    sql: ${TABLE}.linkedin_interactions_pre_start ;;
-  }
-  dimension: linkedin_interactions_pre_submit {
-    type: number
-    sql: ${TABLE}.linkedin_interactions_pre_submit ;;
-  }
-  dimension: meta_interactions_pre_start {
-    type: number
-    sql: ${TABLE}.meta_interactions_pre_start ;;
-  }
-  dimension: meta_interactions_pre_submit {
-    type: number
-    sql: ${TABLE}.meta_interactions_pre_submit ;;
-  }
-  dimension: no_campaign_interactions_pre_start {
-    type: number
-    sql: ${TABLE}.no_campaign_interactions_pre_start ;;
-  }
-  dimension: no_campaign_interactions_pre_submit {
-    type: number
-    sql: ${TABLE}.no_campaign_interactions_pre_submit ;;
-  }
-  dimension: other_interactions_pre_start {
-    type: number
-    sql: ${TABLE}.other_interactions_pre_start ;;
-  }
-  dimension: other_interactions_pre_submit {
-    type: number
-    sql: ${TABLE}.other_interactions_pre_submit ;;
-  }
-  dimension: pivot_influenced_pre_start {
-    type: number
-    sql: ${TABLE}.pivot_influenced_pre_start ;;
-  }
-  dimension: pivot_influenced_pre_submit {
-    type: number
-    sql: ${TABLE}.pivot_influenced_pre_submit ;;
-  }
-  dimension: pivot_interactions_pre_start {
-    type: number
-    sql: ${TABLE}.pivot_interactions_pre_start ;;
-  }
-  dimension: pivot_interactions_pre_submit {
-    type: number
-    sql: ${TABLE}.pivot_interactions_pre_submit ;;
   }
   dimension: portfolio {
     type: string
@@ -135,28 +31,133 @@ view: nmsu_apps_digital_influence {
     type: string
     sql: ${TABLE}.slate_id ;;
   }
-  dimension: tiktok_interactions_pre_start {
+
+  dimension_group: first_admit {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.first_admit_date ;;
+  }
+  dimension_group: first_enroll {
+    type: time
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.first_enroll_date ;;
+  }
+  measure: admit {
+    type: sum
+    sql: ${TABLE}.admit ;;
+  }
+  measure: app_start {
+    type: sum
+    sql: ${TABLE}.app_start ;;
+  }
+  measure: app_submit {
+    type: sum
+    sql: ${TABLE}.app_submit ;;
+  }
+  measure: days_admit_to_enroll {
+    type: sum
+    sql: ${TABLE}.days_admit_to_enroll ;;
+  }
+  measure: days_start_to_submit {
+    type: sum
+    sql: ${TABLE}.days_start_to_submit ;;
+  }
+  measure: days_submit_to_admit {
+    type: sum
+    sql: ${TABLE}.days_submit_to_admit ;;
+  }
+  measure: enroll {
+    type: sum
+    sql: ${TABLE}.enroll ;;
+  }
+  measure: google_interactions_pre_start {
+    type: sum
+    sql: ${TABLE}.google_interactions_pre_start ;;
+  }
+  measure: google_interactions_pre_submit {
+    type: sum
+    sql: ${TABLE}.google_interactions_pre_submit ;;
+  }
+  measure: influenced_pre_start {
     type: number
+    sql: ${TABLE}.influenced_pre_start ;;
+  }
+  measure: influenced_pre_submit {
+    type: sum
+    sql: ${TABLE}.influenced_pre_submit ;;
+  }
+  measure: linkedin_interactions_pre_start {
+    type: sum
+    sql: ${TABLE}.linkedin_interactions_pre_start ;;
+  }
+  measure: linkedin_interactions_pre_submit {
+    type: sum
+    sql: ${TABLE}.linkedin_interactions_pre_submit ;;
+  }
+  measure: meta_interactions_pre_start {
+    type: sum
+    sql: ${TABLE}.meta_interactions_pre_start ;;
+  }
+  measure: meta_interactions_pre_submit {
+    type: sum
+    sql: ${TABLE}.meta_interactions_pre_submit ;;
+  }
+  measure: no_campaign_interactions_pre_start {
+    type: sum
+    sql: ${TABLE}.no_campaign_interactions_pre_start ;;
+  }
+  measure: no_campaign_interactions_pre_submit {
+    type: sum
+    sql: ${TABLE}.no_campaign_interactions_pre_submit ;;
+  }
+  measure: other_interactions_pre_start {
+    type: sum
+    sql: ${TABLE}.other_interactions_pre_start ;;
+  }
+  measure: other_interactions_pre_submit {
+    type: sum
+    sql: ${TABLE}.other_interactions_pre_submit ;;
+  }
+  measure: pivot_influenced_pre_start {
+    type: sum
+    sql: ${TABLE}.pivot_influenced_pre_start ;;
+  }
+  measure: pivot_influenced_pre_submit {
+    type: sum
+    sql: ${TABLE}.pivot_influenced_pre_submit ;;
+  }
+  measure: pivot_interactions_pre_start {
+    type: sum
+    sql: ${TABLE}.pivot_interactions_pre_start ;;
+  }
+  measure: pivot_interactions_pre_submit {
+    type: sum
+    sql: ${TABLE}.pivot_interactions_pre_submit ;;
+  }
+  measure: tiktok_interactions_pre_start {
+    type: sum
     sql: ${TABLE}.tiktok_interactions_pre_start ;;
   }
-  dimension: tiktok_interactions_pre_submit {
-    type: number
+  measure: tiktok_interactions_pre_submit {
+    type: sum
     sql: ${TABLE}.tiktok_interactions_pre_submit ;;
   }
-  dimension: total_interactions_pre_start {
-    type: number
+  measure: total_interactions_pre_start {
+    type: sum
     sql: ${TABLE}.total_interactions_pre_start ;;
   }
-  dimension: total_interactions_pre_submit {
-    type: number
+  measure: total_interactions_pre_submit {
+    type: sum
     sql: ${TABLE}.total_interactions_pre_submit ;;
   }
-  dimension: unknown_interactions_pre_start {
-    type: number
+  measure: unknown_interactions_pre_start {
+    type: sum
     sql: ${TABLE}.unknown_interactions_pre_start ;;
   }
-  dimension: unknown_interactions_pre_submit {
-    type: number
+  measure: unknown_interactions_pre_submit {
+    type: sum
     sql: ${TABLE}.unknown_interactions_pre_submit ;;
   }
   measure: count {
