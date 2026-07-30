@@ -160,6 +160,26 @@ view: nmsu_apps_digital_influence {
     type: sum
     sql: ${TABLE}.unknown_interactions_pre_submit ;;
   }
+  measure: pct_starts_influenced {
+    type:  number
+    value_format_name: percent_0
+    sql: case when ${app_start} != 0 then ${influenced_pre_start}/${app_start} else null end ;;
+  }
+  measure: pct_submits_influenced {
+    type:  number
+    value_format_name: percent_0
+    sql: case when ${app_submit} != 0 then ${influenced_pre_submit}/${app_submit} else null end ;;
+  }
+  measure: pct_starts_influenced_pivot {
+    type:  number
+    value_format_name: percent_0
+    sql: case when ${app_start} != 0 then ${pivot_influenced_pre_start}/${app_start} else null end ;;
+  }
+  measure: pct_submits_influenced_pivot {
+    type:  number
+    value_format_name: percent_0
+    sql: case when ${app_submit} != 0 then ${pivot_influenced_pre_submit}/${app_submit} else null end ;;
+  }
   measure: count {
     type: count
   }
