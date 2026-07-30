@@ -81,7 +81,7 @@ view: nmsu_apps_digital_influence {
     sql: ${TABLE}.google_interactions_pre_submit ;;
   }
   measure: influenced_pre_start {
-    type: number
+    type: sum
     sql: ${TABLE}.influenced_pre_start ;;
   }
   measure: influenced_pre_submit {
