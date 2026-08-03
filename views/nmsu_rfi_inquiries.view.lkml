@@ -125,6 +125,10 @@ view: nmsu_rfi_inquiries {
     type: string
     sql: ${TABLE}.rev_entry_term ;;
   }
+  dimension: term_year {
+    type: number
+    sql: ${TABLE}.term_year ;;
+  }
   dimension: rev_first_utm_medium {
     type: string
     sql: ${TABLE}.rev_first_utm_medium ;;
