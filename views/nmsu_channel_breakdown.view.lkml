@@ -25,6 +25,32 @@ view: nmsu_channel_breakdown {
     type: string
     sql: ${TABLE}.slate_id ;;
   }
+  dimension: campaign_group {
+    type: string
+    label: "Campaign Group"
+    sql:
+    CASE
+      WHEN ${ping_utm_campaign} IS NULL THEN 'No Campaign'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'criminal-justice-bachelors|criminal-justice-masters|dnp|engineering|general-online-nm|hotel-restaurant-tourism|information-communication-techno|information-technology-masters|ma-educational-administration|ma-technical-professional-writin|ms-food-science|msn-leadership-admin|psychology|public-health-masters|military|prospects|sitelink|social-work-masters|sociology|apply|brand-global-campus-nm|brand-masters-graduate|Brand-NewMexico|brand-nm|brand-scholarships|NMSU-\|-Brand---Mast')
+        THEN 'Pivot'
+      WHEN ${ping_utm_campaign} = 'brand' THEN 'Pivot'
+      WHEN ${ping_utm_campaign} IN (
+        'NMSU-|-General-Online---NM',
+        'NMSU-|-General-Online---AZ,-CO,-',
+        'NMSU-|-Engineering---NM',
+        'NMSU-|-Brand-Global-Campus---NM',
+        'NMSU-|-Sociology---NM',
+        'NMSU-|-Brand---TX',
+        'NMSU-|-Brand-Global-Campus---TX',
+        'NMSU-|-Health-Degree---NM',
+        'NMSU-|-Brand---NM',
+        'NMSU-|-Hotel,-Restaurant,-',
+        'NMSU-|-Psychology---NM',
+        'NMSU-|-Criminal-Justice'
+      ) THEN 'Pivot'
+      ELSE 'Other'
+    END ;;
+  }
   measure: app_start {
     type: sum
     sql: ${TABLE}.app_start ;;
