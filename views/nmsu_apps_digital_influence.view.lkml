@@ -154,7 +154,7 @@ view: nmsu_apps_digital_influence {
   }
   measure: pivot_influenced_pre_enroll {
     type: sum
-    sql: ${TABLE}.pivot_influenced_enroll ;;
+    sql: ${TABLE}.pivot_influenced_pre_enroll ;;
   }
   measure: pivot_interactions_pre_start {
     type: sum
