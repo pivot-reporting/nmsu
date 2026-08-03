@@ -51,6 +51,61 @@ view: nmsu_channel_breakdown {
       ELSE 'Other'
     END ;;
   }
+  dimension: campaign_program {
+    type: string
+    label: "Campaign Program"
+    sql:
+    CASE
+      WHEN ${ping_utm_campaign} IS NULL THEN 'No Campaign'
+
+      -- Program-level CONTAINS matches (order preserved from original)
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'criminal-justice-bachelors') THEN 'Criminal Justice BCJ'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'criminal-justice-masters')   THEN 'Criminal Justice MCJ'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'dnp')                        THEN 'Nursing Practice DNP'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'engineering')                THEN 'Engineering MEng'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'general-online-nm')          THEN 'General Online'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'hotel-restaurant-tourism')   THEN 'Hotel, Restaurant, & Tourism MS'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'information-communication-techno') THEN 'Information and Communication Tech'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'information-technology-masters')   THEN 'Information Technology Masters'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'ma-educational-administration')    THEN 'MAED'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'ma-technical-professional-writin') THEN 'MATPC'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'ms-food-science')            THEN 'FSTE'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'msn-leadership-admin')       THEN 'Leadership & Administration MSN'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'psychology')                 THEN 'Psychology BA'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'public-health-masters')      THEN 'Public Health Masters'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'military')                   THEN 'Funnel - Military'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'prospects')                  THEN 'Funnel - Purchased Lists'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'sitelink')                   THEN 'Brand - Awareness'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'social-work-masters')        THEN 'Social Work MA'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'sociology')                  THEN 'Sociology General'
+      WHEN REGEXP_CONTAINS(${ping_utm_campaign}, r'apply')                      THEN 'Funnel - Apply'
+
+      -- Brand CONTAINS matches (all share one result, so collapsed)
+      WHEN ${ping_utm_campaign} = 'brand'
+      OR REGEXP_CONTAINS(${ping_utm_campaign}, r'brand-global-campus-nm|brand-masters-graduate|NMSU-\|-Brand---Mast|Brand-NewMexico|brand-nm|brand-scholarships')
+      THEN 'Brand - Awareness'
+
+      -- Exact matches (mutually exclusive, so grouped by result)
+      WHEN ${ping_utm_campaign} IN (
+      'NMSU-|-General-Online---NM',
+      'NMSU-|-General-Online---AZ,-CO,-'
+      ) THEN 'General Online'
+      WHEN ${ping_utm_campaign} = 'NMSU-|-Engineering---NM' THEN 'Engineering MEng'
+      WHEN ${ping_utm_campaign} IN (
+      'NMSU-|-Brand-Global-Campus---NM',
+      'NMSU-|-Brand-Global-Campus---TX',
+      'NMSU-|-Brand---NM',
+      'NMSU-|-Brand---TX'
+      ) THEN 'Brand - Awareness'
+      WHEN ${ping_utm_campaign} = 'NMSU-|-Sociology---NM'        THEN 'Sociology General'
+      WHEN ${ping_utm_campaign} = 'NMSU-|-Psychology---NM'       THEN 'Psychology BA'
+      WHEN ${ping_utm_campaign} = 'NMSU-|-Hotel,-Restaurant,-'   THEN 'Hotel, Restaurant, & Tourism MS'
+      WHEN ${ping_utm_campaign} = 'NMSU-|-Health-Degree---NM'    THEN 'Health Degree'
+      WHEN ${ping_utm_campaign} = 'NMSU-|-Criminal-Justice'      THEN 'Criminal Justice BCJ'
+
+      ELSE 'Other'
+      END ;;
+  }
   measure: app_start {
     type: sum
     sql: ${TABLE}.app_start ;;
