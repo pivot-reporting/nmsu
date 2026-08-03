@@ -80,6 +80,10 @@ view: nmsu_apps_digital_influence {
     type: sum
     sql: ${TABLE}.google_interactions_pre_submit ;;
   }
+  measure: google_interactions_enroll {
+    type: sum
+    sql: ${TABLE}.google_interactions_enroll ;;
+  }
   measure: influenced_pre_start {
     type: sum
     sql: ${TABLE}.influenced_pre_start ;;
@@ -87,6 +91,10 @@ view: nmsu_apps_digital_influence {
   measure: influenced_pre_submit {
     type: sum
     sql: ${TABLE}.influenced_pre_submit ;;
+  }
+  measure: influenced_pre_enroll {
+    type: sum
+    sql: ${TABLE}.influenced_pre_enroll ;;
   }
   measure: linkedin_interactions_pre_start {
     type: sum
@@ -96,6 +104,10 @@ view: nmsu_apps_digital_influence {
     type: sum
     sql: ${TABLE}.linkedin_interactions_pre_submit ;;
   }
+  measure: linkedin_interactions_enroll {
+    type: sum
+    sql: ${TABLE}.linkedin_interactions_enroll ;;
+  }
   measure: meta_interactions_pre_start {
     type: sum
     sql: ${TABLE}.meta_interactions_pre_start ;;
@@ -103,6 +115,10 @@ view: nmsu_apps_digital_influence {
   measure: meta_interactions_pre_submit {
     type: sum
     sql: ${TABLE}.meta_interactions_pre_submit ;;
+  }
+  measure: meta_interactions_enroll {
+    type: sum
+    sql: ${TABLE}.meta_interactions_enroll ;;
   }
   measure: no_campaign_interactions_pre_start {
     type: sum
@@ -112,6 +128,10 @@ view: nmsu_apps_digital_influence {
     type: sum
     sql: ${TABLE}.no_campaign_interactions_pre_submit ;;
   }
+  measure: no_campaign_interactions_enroll {
+    type: sum
+    sql: ${TABLE}.no_campaign_interactions_enroll ;;
+  }
   measure: other_interactions_pre_start {
     type: sum
     sql: ${TABLE}.other_interactions_pre_start ;;
@@ -119,6 +139,10 @@ view: nmsu_apps_digital_influence {
   measure: other_interactions_pre_submit {
     type: sum
     sql: ${TABLE}.other_interactions_pre_submit ;;
+  }
+  measure: other_interactions_enroll {
+    type: sum
+    sql: ${TABLE}.other_interactions_enroll ;;
   }
   measure: pivot_influenced_pre_start {
     type: sum
@@ -128,6 +152,10 @@ view: nmsu_apps_digital_influence {
     type: sum
     sql: ${TABLE}.pivot_influenced_pre_submit ;;
   }
+  measure: pivot_influenced_pre_enroll {
+    type: sum
+    sql: ${TABLE}.pivot_influenced_enroll ;;
+  }
   measure: pivot_interactions_pre_start {
     type: sum
     sql: ${TABLE}.pivot_interactions_pre_start ;;
@@ -135,6 +163,10 @@ view: nmsu_apps_digital_influence {
   measure: pivot_interactions_pre_submit {
     type: sum
     sql: ${TABLE}.pivot_interactions_pre_submit ;;
+  }
+  measure: pivot_interactions_enroll {
+    type: sum
+    sql: ${TABLE}.pivot_interactions_enroll ;;
   }
   measure: tiktok_interactions_pre_start {
     type: sum
@@ -144,6 +176,10 @@ view: nmsu_apps_digital_influence {
     type: sum
     sql: ${TABLE}.tiktok_interactions_pre_submit ;;
   }
+  measure: tiktok_interactions_enroll {
+    type: sum
+    sql: ${TABLE}.tiktok_interactions_enroll ;;
+  }
   measure: total_interactions_pre_start {
     type: sum
     sql: ${TABLE}.total_interactions_pre_start ;;
@@ -152,6 +188,10 @@ view: nmsu_apps_digital_influence {
     type: sum
     sql: ${TABLE}.total_interactions_pre_submit ;;
   }
+  measure: total_interactions_enroll {
+    type: sum
+    sql: ${TABLE}.total_interactions_enrollt ;;
+  }
   measure: unknown_interactions_pre_start {
     type: sum
     sql: ${TABLE}.unknown_interactions_pre_start ;;
@@ -159,6 +199,10 @@ view: nmsu_apps_digital_influence {
   measure: unknown_interactions_pre_submit {
     type: sum
     sql: ${TABLE}.unknown_interactions_pre_submit ;;
+  }
+  measure: unknown_interactions_enroll {
+    type: sum
+    sql: ${TABLE}.unknown_interactions_enroll ;;
   }
   measure: pct_starts_influenced {
     type:  number
@@ -170,6 +214,11 @@ view: nmsu_apps_digital_influence {
     value_format_name: percent_0
     sql: case when ${app_submit} != 0 then ${influenced_pre_submit}/${app_submit} else null end ;;
   }
+  measure: pct_enroll_influenced {
+    type:  number
+    value_format_name: percent_0
+    sql: case when ${enroll} != 0 then ${influenced_pre_enroll}/${enroll} else null end ;;
+  }
   measure: pct_starts_influenced_pivot {
     type:  number
     value_format_name: percent_0
@@ -180,7 +229,11 @@ view: nmsu_apps_digital_influence {
     value_format_name: percent_0
     sql: case when ${app_submit} != 0 then ${pivot_influenced_pre_submit}/${app_submit} else null end ;;
   }
-  measure: count {
+  measure: pct_enroll_influenced_pivot {
+    type:  number
+    value_format_name: percent_0
+    sql: case when ${enroll} != 0 then ${pivot_influenced_pre_enroll}/${enroll} else null end ;;
+  }measure: count {
     type: count
   }
 }
