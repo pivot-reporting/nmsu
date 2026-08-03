@@ -59,6 +59,10 @@ view: nmsu_channel_breakdown {
     type: sum
     sql: ${TABLE}.app_submit ;;
   }
+  measure: enroll {
+    type: sum
+    sql: ${TABLE}.enroll ;;
+  }
   measure: influenced_pre_start {
     type: sum
     sql: ${TABLE}.influenced_pre_start ;;
@@ -67,6 +71,10 @@ view: nmsu_channel_breakdown {
     type: sum
     sql: ${TABLE}.influenced_pre_submit ;;
   }
+  measure: influenced_pre_enroll {
+    type: sum
+    sql: ${TABLE}.influenced_pre_enroll ;;
+  }
   measure: interactions_pre_start {
     type: sum
     sql: ${TABLE}.interactions_pre_start ;;
@@ -74,6 +82,10 @@ view: nmsu_channel_breakdown {
   measure: interactions_pre_submit {
     type: sum
     sql: ${TABLE}.interactions_pre_submit ;;
+  }
+  measure: interactions_pre_enroll {
+    type: sum
+    sql: ${TABLE}.interactions_pre_enroll ;;
   }
   measure: pct_starts_influenced {
     type:  number
@@ -84,6 +96,11 @@ view: nmsu_channel_breakdown {
     type:  number
     value_format_name: percent_0
     sql: case when ${app_submit} != 0 then ${influenced_pre_submit}/${app_submit} else null end ;;
+  }
+  measure: pct_enroll_influenced {
+    type:  number
+    value_format_name: percent_0
+    sql: case when ${enroll} != 0 then ${influenced_pre_enroll}/${enroll} else null end ;;
   }
   measure: count {
     type: count
