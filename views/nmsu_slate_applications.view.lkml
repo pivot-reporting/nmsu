@@ -202,6 +202,10 @@ view: nmsu_slate_applications {
     type: string
     sql: ${TABLE}.region ;;
   }
+  dimension: region_category {
+    type: string
+    sql: ${TABLE}.region_category ;;
+  }
   dimension: rev_app_entry_term {
     type: string
     sql: ${TABLE}.rev_app_entry_term ;;
