@@ -18,6 +18,10 @@ view: nmsu_rfi_inquiries {
     type: string
     sql: ${TABLE}.address_region ;;
   }
+  dimension: region_category {
+    type: string
+    sql: ${TABLE}.region_category ;;
+  }
   dimension: campaign_program {
     type: string
     sql: ${TABLE}.campaign_program ;;
