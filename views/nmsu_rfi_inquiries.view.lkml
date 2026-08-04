@@ -149,6 +149,10 @@ view: nmsu_rfi_inquiries {
     type: string
     sql: ${TABLE}.student_level ;;
   }
+  dimension: degree_level {
+    type: string
+    sql: ${TABLE}.degree_level ;;
+  }
   dimension: student_type {
     type: string
     sql: ${TABLE}.student_type ;;
