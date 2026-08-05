@@ -250,7 +250,7 @@ view: nmsu_slate_applications {
     type: string
     sql: ${TABLE}.utm_source ;;
   }
-  dimension: app_start_fiscal_month_order {
+ dimension: app_start_fiscal_month_order {
     type: number
     sql:
     CASE
@@ -268,6 +268,12 @@ view: nmsu_slate_applications {
       WHEN ${app_start_month} = 6  THEN 12
     END ;;
     label: "App Start Fiscal Month Order"
+  }
+  dimension: start_month_name {
+    type: string
+    sql: FORMAT_TIMESTAMP('%B', ${TABLE}.application_created_date) ;;
+    group_label: "Application Created"
+    order_by_field: app_start_fiscal_month_order
   }
   dimension: app_start_fiscal_year {
     type: string
