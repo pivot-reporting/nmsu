@@ -306,6 +306,12 @@ view: nmsu_slate_applications {
     END ;;
     label: "App Submit Fiscal Month Order"
   }
+  dimension: submit_month_name {
+    type: string
+    sql: FORMAT_TIMESTAMP('%B', ${TABLE}.application_submitted_date) ;;
+    group_label: "Application Submitted Date"
+    order_by_field: app_submit_fiscal_month_order
+  }
   dimension: app_submit_fiscal_year {
     type: string
     sql:
@@ -337,6 +343,12 @@ view: nmsu_slate_applications {
     END ;;
     label: "Admit Fiscal Month Order"
   }
+  dimension: admit_month_name {
+    type: string
+    sql: FORMAT_TIMESTAMP('%B', ${TABLE}.first_admit_date) ;;
+    group_label: "First Admit Date"
+    order_by_field: admit_fiscal_month_order
+  }
   dimension: admit_fiscal_year {
     type: string
     sql:
@@ -367,6 +379,12 @@ view: nmsu_slate_applications {
       WHEN ${enroll_month} = 6  THEN 12
     END ;;
     label: "Enroll Fiscal Month Order"
+  }
+  dimension: enroll_month_name {
+    type: string
+    sql: FORMAT_TIMESTAMP('%B', ${TABLE}.first_enroll_date) ;;
+    group_label: "First Enroll Date"
+    order_by_field: enroll_fiscal_month_order
   }
   dimension: enroll_fiscal_year {
     type: string
