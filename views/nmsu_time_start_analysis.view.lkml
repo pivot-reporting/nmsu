@@ -79,10 +79,17 @@ view: fall_time_analysis_days {
   # Do NOT wrap either measure in COALESCE. Where 2026 has no rows yet,
   # cum_2026 is NULL and the variance is NULL, so the line simply stops.
   # Coalescing to 0 would draw a large fake deficit instead.
+  measure: rows_2026 {
+    type: count
+    filters: [term_year: "2026"]
+    hidden: yes
+  }
+
   measure: variance_abs {
     label: "2026 vs 2025"
     type: number
-    sql: ${cum_2026} - ${cum_2025} ;;
+    sql: CASE WHEN ${rows_2026} = 0 THEN NULL
+      ELSE ${cum_2026} - ${cum_2025} END ;;
     value_format: "+#,##0;[RED]-#,##0"
   }
 
