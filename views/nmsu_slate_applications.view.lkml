@@ -272,7 +272,7 @@ view: nmsu_slate_applications {
   dimension: start_month_name {
     type: string
     sql: FORMAT_TIMESTAMP('%B', ${TABLE}.application_created_date) ;;
-    group_label: "Application Created"
+    group_label: "Application Created Date"
     order_by_field: app_start_fiscal_month_order
   }
   dimension: app_start_fiscal_year {
