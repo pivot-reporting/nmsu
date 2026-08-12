@@ -191,7 +191,7 @@ view: nmsu_rfi_inquiries {
   dimension: rfi_month_name {
     type: string
     sql: FORMAT_TIMESTAMP('%B', ${TABLE}.first_rfi_submission_date) ;;
-    group_label: "First RFI Submission Date"
+    group_label: "First Rfi Submission Date"
     order_by_field: fiscal_month_order
   }
 
