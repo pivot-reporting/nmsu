@@ -188,6 +188,13 @@ view: nmsu_rfi_inquiries {
     END ;;
     label: "Fiscal Month Order"
   }
+  dimension: rfi_month_name {
+    type: string
+    sql: FORMAT_TIMESTAMP('%B', ${TABLE}.first_rfi_submission_date) ;;
+    group_label: "First RFI Submission Date"
+    order_by_field: fiscal_month_order
+  }
+
   dimension: fiscal_year {
     type: string
     sql:
