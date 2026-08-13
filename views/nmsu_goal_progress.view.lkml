@@ -6,51 +6,51 @@ view: nmsu_goal_progress {
     sql: ${TABLE}.term_semester ;;
   }
   measure: admits_26 {
-    type: number
+    type: sum
     sql: ${TABLE}.admits_26 ;;
   }
   measure: admits_27 {
-    type: number
+    type: sum
     sql: ${TABLE}.admits_27 ;;
   }
   measure: apps_26 {
-    type: number
+    type: sum
     sql: ${TABLE}.apps_26 ;;
   }
   measure: apps_27 {
-    type: number
+    type: sum
     sql: ${TABLE}.apps_27 ;;
   }
   measure: enroll_26 {
-    type: number
+    type: sum
     sql: ${TABLE}.enroll_26 ;;
   }
   measure: enroll_27 {
-    type: number
+    type: sum
     sql: ${TABLE}.enroll_27 ;;
   }
   measure: goal_admits {
-    type: number
+    type: sum
     sql: ${TABLE}.goal_admits ;;
   }
   measure: goal_apps {
-    type: number
+    type: sum
     sql: ${TABLE}.goal_apps ;;
   }
   measure: goal_enroll {
-    type: number
+    type: sum
     sql: ${TABLE}.goal_enroll ;;
   }
   measure: goal_inquiry {
-    type: number
+    type: sum
     sql: ${TABLE}.goal_inquiry ;;
   }
   measure: inquiry_26 {
-    type: number
+    type: sum
     sql: ${TABLE}.inquiry_26 ;;
   }
   measure: inquiry_27 {
-    type: number
+    type: sum
     sql: ${TABLE}.inquiry_27 ;;
   }
   measure: inquiry_progress_rate {
