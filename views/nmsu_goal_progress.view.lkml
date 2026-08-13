@@ -5,6 +5,10 @@ view: nmsu_goal_progress {
     type: string
     sql: ${TABLE}.term_semester ;;
   }
+  dimension: degree {
+    type: string
+    sql: ${TABLE}.degree_type ;;
+  }
   measure: admits_26 {
     type: sum
     sql: ${TABLE}.admits_26 ;;
