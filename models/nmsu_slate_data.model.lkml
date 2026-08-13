@@ -28,3 +28,5 @@ explore:  fall_time_analysis_days {}
 explore:  nmsu_channel_breakdown {}
 
 explore:  nmsu_apps_digital_influence {}
+
+explore:  nmsu_goal_progress {}
