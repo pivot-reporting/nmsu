@@ -59,7 +59,7 @@ view: nmsu_goal_progress {
   }
   measure: inquiry_progress_rate {
     type:  number
-    value_format_name: percent_0
+    value_format_name: percent_2
     sql: case when ${goal_inquiry} != 0 then ${inquiry_27}/${goal_inquiry} else null end ;;
   }
   measure: apps_progress_rate {
