@@ -61,17 +61,47 @@ view: nmsu_goal_progress {
     type:  number
     value_format_name: percent_2
     sql: case when ${goal_inquiry} != 0 then ${inquiry_27}/${goal_inquiry} else null end ;;
-  }
+    html:
+    {% if value == nil %}
+    <span style="color: #888780;">–</span>
+    {% elsif value > 1.0 %}
+    <span style="color: #3eb8c7; font-weight: 700;">{{ rendered_value }}</span>
+    {% elsif value >= 0.5 %}
+    <span style="color: #f0ce67; font-weight: 700;">{{ rendered_value }}</span>
+    {% else %}
+    <span style="color: #888780;">{{ rendered_value }}</span>
+    {% endif %} ;;
+    }
   measure: apps_progress_rate {
     type:  number
     value_format_name: percent_0
     sql: case when ${goal_apps} != 0 then ${apps_27}/${goal_apps} else null end ;;
-  }
+    html:
+    {% if value == nil %}
+    <span style="color: #888780;">–</span>
+    {% elsif value > 1.0 %}
+    <span style="color: #3eb8c7; font-weight: 700;">{{ rendered_value }}</span>
+    {% elsif value >= 0.5 %}
+    <span style="color: #f0ce67; font-weight: 700;">{{ rendered_value }}</span>
+    {% else %}
+    <span style="color: #888780;">{{ rendered_value }}</span>
+    {% endif %} ;;
+    }
   measure: admits_progress_rate {
     type:  number
     value_format_name: percent_0
     sql: case when ${goal_admits} != 0 then ${admits_27}/${goal_admits} else null end ;;
-  }
+    html:
+    {% if value == nil %}
+    <span style="color: #888780;">–</span>
+    {% elsif value > 1.0 %}
+    <span style="color: #3eb8c7; font-weight: 700;">{{ rendered_value }}</span>
+    {% elsif value >= 0.5 %}
+    <span style="color: #f0ce67; font-weight: 700;">{{ rendered_value }}</span>
+    {% else %}
+    <span style="color: #888780;">{{ rendered_value }}</span>
+    {% endif %} ;;
+    }
  measure: enroll_progress_rate {
   type: number
   value_format_name: percent_0
@@ -86,7 +116,8 @@ view: nmsu_goal_progress {
     {% else %}
       <span style="color: #888780;">{{ rendered_value }}</span>
     {% endif %} ;;
-  }measure: inquiry_prior_rate {
+  }
+  measure: inquiry_prior_rate {
     type:  number
     value_format_name: percent_0
     sql: case when ${inquiry_26} != 0 then ${inquiry_27}/${inquiry_26} else null end ;;
