@@ -76,18 +76,17 @@ view: nmsu_goal_progress {
   type: number
   value_format_name: percent_0
   sql: case when ${goal_enroll} != 0 then ${enroll_27}/${goal_enroll} else null end ;;
-  html:
+    html:
     {% if value == nil %}
       <span style="color: #888780;">–</span>
     {% elsif value > 1.0 %}
-      <span style="color: #3eb8c7;">{{ rendered_value }}</span>
+      <span style="color: #3eb8c7; font-weight: 700;">{{ rendered_value }}</span>
     {% elsif value >= 0.5 %}
-      <span style="color: #f0ce67;">{{ rendered_value }}</span>
+      <span style="color: #f0ce67; font-weight: 700;">{{ rendered_value }}</span>
     {% else %}
       <span style="color: #888780;">{{ rendered_value }}</span>
     {% endif %} ;;
-}
-  measure: inquiry_prior_rate {
+  }measure: inquiry_prior_rate {
     type:  number
     value_format_name: percent_0
     sql: case when ${inquiry_26} != 0 then ${inquiry_27}/${inquiry_26} else null end ;;
