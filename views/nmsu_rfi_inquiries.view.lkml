@@ -241,7 +241,7 @@ view: nmsu_rfi_inquiries {
                   <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR) THEN 'prior'
          WHEN ${rev_entry_term} LIKE '%2025%'
               AND CAST(${first_rfi_submission_date} AS DATE)
-                  <= DATE_SUB(CURRENT_DATE(), INTERVAL 2 YEAR) THEN '2 years prior'
+                  <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR) THEN '2 years prior'
        END ;;
   }
 measure: inquiry_ytd_2027 {
