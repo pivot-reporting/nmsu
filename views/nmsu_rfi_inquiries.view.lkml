@@ -287,6 +287,10 @@ measure: inquiry_ytd_2026 {
     label: "Inquiries"
 
   }
+  measure: ytd_inquiries {
+    type: sum
+    sql: ${TABLE}.ytd_inquiries ;;
+  }
   measure: count {
     type: count
     }
