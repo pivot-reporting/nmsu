@@ -235,32 +235,32 @@ view: nmsu_rfi_inquiries {
   dimension: ytd_cycle {
     type: string
     sql: CASE
-         WHEN ${rev_entry_term} LIKE '%2026%' THEN 'current'
-         WHEN ${rev_entry_term} LIKE '%2025%'
+         WHEN ${rev_entry_term} LIKE '%2027%' THEN 'current'
+         WHEN ${rev_entry_term} LIKE '%2026%'
               AND CAST(${first_rfi_submission_date} AS DATE)
                   <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR) THEN 'prior'
        END ;;
   }
-measure: inquiry_ytd_2026 {
+measure: inquiry_ytd_2027 {
   type: count_distinct
   sql: ${person_id} ;;
   filters: [ytd_cycle: "current"]
   value_format_name: decimal_0
-  label: "2026 Inquiries YTD"
+  label: "2027 Inquiries YTD"
 }
 
-measure: inquiry_ytd_2025 {
+measure: inquiry_ytd_2026 {
   type: count_distinct
   sql: ${person_id} ;;
   filters: [ytd_cycle: "prior"]
   value_format_name: decimal_0
-  label: "2025 Inquiries YTD"
+  label: "2026 Inquiries YTD"
 }
 measure: inquiry_ytd_pct_change {
   type: number
   sql: SAFE_DIVIDE(
-    (${inquiry_ytd_2026} - ${inquiry_ytd_2025}),
-    NULLIF(${inquiry_ytd_2025}, 0)
+    (${inquiry_ytd_2027} - ${inquiry_ytd_2026}),
+    NULLIF(${inquiry_ytd_2026}, 0)
   ) ;;
   value_format_name: percent_1
   label: "Inquiry YTD % Change"
