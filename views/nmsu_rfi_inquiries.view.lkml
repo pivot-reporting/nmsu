@@ -291,12 +291,11 @@ measure: inquiry_ytd_2026 {
     label: "Inquiries"
 
   }
-#  measure: inquiries_ytd {
-#    type: count_distinct
-#    sql: ${person_id} ;;
-#    filters: [ytd_inquiries: "1"]
-#    value_format_name: decimal_0
-#  }
+  measure: inquiries_ytd {
+    type: count_distinct
+    sql: ${person_id} ;;
+    filters: [ytd_inquiries: "1"]
+  }
   measure: count {
     type: count
     }
