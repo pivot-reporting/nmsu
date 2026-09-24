@@ -239,6 +239,9 @@ view: nmsu_rfi_inquiries {
          WHEN ${rev_entry_term} LIKE '%2026%'
               AND CAST(${first_rfi_submission_date} AS DATE)
                   <= DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR) THEN 'prior'
+         WHEN ${rev_entry_term} LIKE '%2025%'
+              AND CAST(${first_rfi_submission_date} AS DATE)
+                  <= DATE_SUB(CURRENT_DATE(), INTERVAL 2 YEAR) THEN '2 years prior'
        END ;;
   }
 measure: inquiry_ytd_2027 {
@@ -256,7 +259,14 @@ measure: inquiry_ytd_2026 {
   value_format_name: decimal_0
   label: "2026 Inquiries YTD"
 }
-measure: inquiry_ytd_pct_change {
+  measure: inquiry_ytd_2025 {
+    type: count_distinct
+    sql: ${person_id} ;;
+    filters: [ytd_cycle: "2 years prior"]
+    value_format_name: decimal_0
+    label: "2025 Inquiries YTD"
+  }
+  measure: inquiry_ytd_pct_change {
   type: number
   sql: SAFE_DIVIDE(
     (${inquiry_ytd_2027} - ${inquiry_ytd_2026}),
