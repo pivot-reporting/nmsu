@@ -169,6 +169,10 @@ view: nmsu_rfi_inquiries {
     type: string
     sql: ${TABLE}.utm_platform ;;
   }
+#  dimension: ytd_inquiries {
+#    type: number
+#    sql: ${TABLE}.ytd_inquiries ;;
+#  }
   dimension: fiscal_month_order {
     type: number
     sql:
@@ -287,10 +291,12 @@ measure: inquiry_ytd_2026 {
     label: "Inquiries"
 
   }
-  measure: ytd_inquiries {
-    type: sum
-    sql: ${TABLE}.ytd_inquiries ;;
-  }
+#  measure: inquiries_ytd {
+#    type: count_distinct
+#    sql: ${person_id} ;;
+#    filters: [ytd_inquiries: "1"]
+#    value_format_name: decimal_0
+#  }
   measure: count {
     type: count
     }
