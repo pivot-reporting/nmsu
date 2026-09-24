@@ -169,10 +169,10 @@ view: nmsu_rfi_inquiries {
     type: string
     sql: ${TABLE}.utm_platform ;;
   }
-#  dimension: ytd_inquiries {
-#    type: number
-#    sql: ${TABLE}.ytd_inquiries ;;
-#  }
+  dimension: ytd_inquiries {
+    type: number
+    sql: ${TABLE}.ytd_inquiries ;;
+  }
   dimension: fiscal_month_order {
     type: number
     sql:
